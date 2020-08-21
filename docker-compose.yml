@@ -1,0 +1,26 @@
+version: "3"
+services:
+    gt6200-env: 
+        container_name: gt6200-deb-os
+        image: saintskeeper/sherpacontent:1.0.2
+        deploy: 
+            resources: 
+                limits:
+                    cpus: '.50'
+                    memory: 2Gi
+        volumes:
+            - gt6200-data:/gt6200
+            # you'll need to change this directory to match your project locations 
+            # this bind mount will also let you edit files on disk and they will appear
+            # in your container w.o having to worry about rerunning docker-compose up =
+            - './gios-fall-20-projects:/Projects:Z'
+
+volumes:
+    gt6200-data:
+        external: false
+networks:
+    default:
+        driver: bridge
+
+
+        
